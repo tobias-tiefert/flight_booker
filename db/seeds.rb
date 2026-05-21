@@ -25,7 +25,8 @@ airports = [ muc, ber, ham ]
         departure_airport: from,
         arrival_airport: to,
         start_datetime: Time.zone.parse("#{date} #{rand(6..20)}:#{rand(0..59)}"),
-        duration: rand(45..90)
+        duration: rand(45..90),
+        price: rand(90..280)*100
       )
     end
   end

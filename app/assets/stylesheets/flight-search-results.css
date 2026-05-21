@@ -1,0 +1,123 @@
+@layer components{
+  ul.flight-search-results{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;  
+  }
+  ul.flight-search-results li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .search-results{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 3rem 0;
+  }
+  
+  .flight{
+    display: grid;
+    grid-template-columns: 54px auto 200px;
+    min-height: 150px;
+    background-color: var(--gray-100);
+    border-radius: 20px;
+  }
+  
+  .flight__radio-button{
+    background-color: var(--gray-300);
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flight__radio-button input[type="radio"]{
+    width: 18px;
+    height: 18px;
+  }
+  .flight__information{
+    padding: 1rem 1.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    gap: 1rem;
+    width: 350px;
+    grid-template-areas:  "departure arrow arrival"
+                          "duration duration duration"
+  }
+  .departure-airport{
+    grid-area:  departure;
+  }
+  .arrow-icon{
+    grid-area:  arrow;
+    transform: translateY(9px);
+  }
+  .arrival-airport{
+    grid-area: arrival;
+  }
+  .flight__time{
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .arrow-icon{
+    align-self: center;
+    justify-self: flex-start;
+  }
+  .flight__duration{
+    display: flex;
+    gap: 0.5rem;
+    grid-area: duration;
+  }
+  .flight__price{
+    background-color: var(--gold-500);
+    border-radius: 0 20px 20px 0;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxMSAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZSB4MT0iMC41IiB5MT0iMSIgeDI9IjAuNDk5OTkyIiB5Mj0iMTczIiBzdHJva2U9IiNBMjkxNDkiLz48bGluZSB4MT0iMzc3IiB5MT0iMC45IiB5Mj0iMC45IiBzdHJva2U9IiNBMjkxNDkiLz48L3N2Zz4=");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .price-tag{
+    display: flex;
+    transform: translate(-1em, 1.6rem) rotate(3deg);;
+  }
+  .price-tag__price{
+    background-color: var(--white);
+    height: 50px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border-radius: 1px 3px 3px 1px;
+    box-shadow: 0 4px 11px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    
+  }
+  .price-tag::before{
+    content: " ";
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTUiIGhlaWdodD0iMTAyIiB2aWV3Qm94PSIwIDAgNTUgMTAyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik01NSAxMDJMNDEuNDE3IDk2Ljc0MjJDNDAuMjYxNiA5Ni4yOTQ5IDM5LjUgOTUuMTgzMyAzOS41IDkzLjk0NDNWNjAuMDU1N0MzOS41IDU4LjgxNjcgNDAuMjYxNiA1Ny43MDUxIDQxLjQxNyA1Ny4yNTc4TDU1IDUyVjEwMlpNNDkuMjI4NSA3MkM0Ni43NDMyIDcyIDQ0LjcyODUgNzQuMDE0NyA0NC43Mjg1IDc2LjVDNDQuNzI4NSA3OC45ODUzIDQ2Ljc0MzIgODEgNDkuMjI4NSA4MUM1MS43MTM2IDgwLjk5OTcgNTMuNzI4NSA3OC45ODUxIDUzLjcyODUgNzYuNUM1My43Mjg1IDc0LjAxNDkgNTEuNzEzNiA3Mi4wMDAzIDQ5LjIyODUgNzJaIiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik01MC41IDc2LjVDMzguNSA3OS41IDE0LjcgODAuNSAxNS41IDYwLjVDMTYuMyA0MC41IDUuNjY2NjcgMTEuNjY2NyAxIDFDNyAxOC42NjY3IDIyLjMgNTguNSAyOS41IDY2LjVDMzYuNyA3NC41IDQ2LjUgNzYuNSA1MC41IDc2LjVaIiBzdHJva2U9IiM2RjY1MzgiIHN0cm9jay13aWR0aD0iMiIvPjwvc3ZnPg==");
+    background-repeat: no-repeat;
+    width: 55px;
+    height: 102px;
+    transform: translate(1px, -52px);
+    z-index: 40;
+  }
+  @media screen and (max-width: 700px) {
+    .flight{
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px 150px 150px;
+    }
+    .flight__information{
+      width: 90vw;
+      max-width: 350px;
+    }
+    .flight__radio-button{
+    border-radius: 20px 20px 0 0;
+  }
+    .flight__price{
+    border-radius: 0 0 20px 20px;
+  }
+  }
+}

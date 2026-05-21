@@ -3,16 +3,28 @@
     background-color: var(--blue-900);
     color: var(--white);
     display: flex;
-    padding: 1rem  2rem;
+    padding: 1rem var(--p-left-right);
     justify-content: space-between;
     align-items: center;
+    gap: 2rem
   }
-  .logo{
+  .logo, .logo a, .logo a:visited{
     font-size: 2rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     gap: 1rem;
+    text-decoration: none;
+  }
+  @media screen and (max-width: 500px) {
+    .logo{
+    font-size: 1.5rem;
+  }
+  }
+  @media screen and (max-width: 350px) {
+    .logo{
+    font-size: 1.3rem;
+  }
   }
   .navigation--icons{
     margin: 0;
