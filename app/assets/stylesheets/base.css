@@ -3,7 +3,7 @@
     font-family: var(--text-font);
     background-color: var(--background);
     color: var(--text);
-    padding: 0 0 6rem 0;
+    padding: 0 0 8rem 0;
     }
     input[type="submit"]{
     display: none;
@@ -41,6 +41,12 @@
   background-position: right 12px center;
   background-size: 16px;
   }
-
+.input-group{
+  width: 100%;
+}
+  .input-group *{
+  display: block;
+  width: 100%;
+}
 
 }

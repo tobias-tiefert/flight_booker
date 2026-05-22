@@ -1,0 +1,56 @@
+@layer components{
+  .flight-information{
+    background-color: var(--blue-400);
+    padding: 2rem 20vw;
+    display: flex;
+    justify-content: center;
+  }
+  @media screen and (max-width: 400px) {
+    .flight-information{
+    padding: 2rem 5vw;
+  }
+  }
+
+  .passengers{
+    display: flex;
+    align-items: center;
+    margin: 3rem 0;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .passengers form{
+    display: flex;
+    gap: 2rem;
+    flex-direction: column  ;
+  }
+  .passenger-card{
+    background-color: var(--gray-100);
+    border-radius: 20px;
+    padding: 1rem 1.5rem 2rem;
+    width: 90vw;
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:  "headline headline"
+                          "input input";
+    gap: 1rem;
+  }
+  @media screen and (max-width: 400px) {
+    .passenger-card{
+    grid-template-columns: 1fr;
+    grid-template-areas:  "headline"
+                          "input"
+                          "input";
+    gap: 1rem;
+  }
+  }
+  .passenger-card__title{
+    grid-area: headline;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+  }
+  .wizzard-checkout{
+    display: flex !important;
+  }
+}

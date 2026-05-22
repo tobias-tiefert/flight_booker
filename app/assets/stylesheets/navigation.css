@@ -15,14 +15,15 @@
     align-items: center;
     gap: 1rem;
     text-decoration: none;
+    color: var(--white);
   }
   @media screen and (max-width: 500px) {
-    .logo{
+    .logo, .logo a, .logo a:visited{
     font-size: 1.5rem;
   }
   }
   @media screen and (max-width: 350px) {
-    .logo{
+    .logo, .logo a, .logo a:visited {
     font-size: 1.3rem;
   }
   }

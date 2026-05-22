@@ -28,7 +28,7 @@ class Flight < ApplicationRecord
     end
   end
 
-  def price_in_euro
-    "#{'%.2f' % (price/100.0)} €"
+  def price_in_euro(calc_price = price)
+    "#{'%.2f' % (calc_price/100.0)} €"
   end
 end

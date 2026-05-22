@@ -24,10 +24,32 @@
     min-height: 150px;
     background-color: var(--gray-100);
     border-radius: 20px;
+    cursor: pointer;
+    --radio-bg: var(--gray-300);
+  }
+  .flight--checkout{
+    display: grid;
+    grid-template-columns: auto 200px;
+    min-height: 150px;
+    background-color: var(--gray-100);
+    border-radius: 20px;
+    cursor:auto;
+    --radio-bg: var(--gray-300);
+    max-width: 580px;
+  }
+  .flight--checkout .flight__information{
+    grid-template-areas:  "departure arrow arrival"
+                          "duration duration duration"
+                          "date date date"
+                          "passenger passenger passenger"
+  }
+  .flight:has(input[type="radio"]:checked){
+    outline: 5px solid var(--blue-900);
+    --radio-bg: var(--blue-900);
   }
   
   .flight__radio-button{
-    background-color: var(--gray-300);
+    background-color: var(--radio-bg);
     border-radius: 20px 0 0 20px;
     display: flex;
     align-items: center;
@@ -48,6 +70,16 @@
   }
   .departure-airport{
     grid-area:  departure;
+  }
+  .flight__passengers{
+    display: flex;
+    gap: 0.5rem;
+    grid-area: passenger;
+  }
+  .flight__date{
+    display: flex;
+    gap: 0.5rem;
+    grid-area: date;
   }
   .arrow-icon{
     grid-area:  arrow;
@@ -104,14 +136,50 @@
     transform: translate(1px, -52px);
     z-index: 40;
   }
+  .wizzard{
+    background-color: var(--blue-900);
+    color: var(--white);
+    display: flex;
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 112px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2rem;
+    font-size: 0.75rem;
+    display: none;
+  }
+  form:has(input[type="radio"]:checked) .wizzard{
+    display: flex;
+  }
+  .wizzard__cta{
+    color: var(--blue-400);
+  }
+  .button--wizzard-next{
+    background-color: var(--yellow-500);
+    color: var(--blue-900);
+  }
+  .button--wizzard-next:hover{
+    background-color: var(--blue-400);
+  }
   @media screen and (max-width: 700px) {
     .flight{
       grid-template-columns: 1fr;
       grid-template-rows: 50px 150px 150px;
     }
+    .flight--checkout{
+      grid-template-columns: 1fr;
+    }
     .flight__information{
       width: 90vw;
       max-width: 350px;
+    }
+    .flight--checkout .flight__information,
+    .flight--checkout .flight__price{
+      width: 60vw;
     }
     .flight__radio-button{
     border-radius: 20px 20px 0 0;
@@ -120,4 +188,11 @@
     border-radius: 0 0 20px 20px;
   }
   }
+  @media screen and (max-width: 400px) {
+  .flight--checkout .flight__information,
+  .flight--checkout .flight__price{
+      width: 90vw;
+    }
+  }
+  
 }
