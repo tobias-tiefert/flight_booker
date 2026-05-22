@@ -1,0 +1,95 @@
+<div class="flight-search">
+  <%= form_with url: root_path, method: :get do |form| %>
+    <div class="flight-search__search-fields">
+      <div class="flight-search__input-group">
+        <%= form.label :from_airport, "From" %>
+        <%= form.select :from_airport, Airport.order(:code).map { |airport| [airport.code, airport.id] },
+                      { include_blank: "Select departure airport", selected: params[:from_airport] } %>
+      </div>
+      <div class="flight-search__input-group">
+        <%= form.label :to_airport, "To" %>
+        <%= form.select :to_airport, Airport.order(:code).map { |airport| [airport.code, airport.id] },
+                      { include_blank: "Select arrival airport", selected: params[:to_airport] }%>
+      </div>
+      <div class="flight-search__input-group">
+        <%= form.label :date, "Date" %>
+        <%= form.select :date, @flight_dates,
+                      { include_blank: "Select date", selected: params[:date] } %>
+      </div>
+      <div class="flight-search__input-group">
+        <%= form.label :passenger_count, "Number of passengers:" %>
+        <%= form.select :passenger_count, 1..4, selected: params[:passenger_count] || 1 %>
+      </div>
+    </div>
+  
+    <%= form.button "Find flights", type: "submit", name: nil, class: "button button--primary"  %>
+  <% end %>
+</div>
+
+<% unless @flights.empty?%>
+   <%= form_with url: new_booking_path, method: :get do |form| %>
+    <%= form.hidden_field :passenger_count, value: params[:passenger_count] %>
+    <div class="search-results">
+      <ul class="flight-search-results">
+        <% @flights.each do |flight|%>
+          <li >
+              <label  class="flight">
+                <div class="flight__radio-button">
+                  <%= form.radio_button :flight_id, flight.id %>
+                </div>
+                <div class="flight__information">
+                  <div class="flight__airport-and-time departure-airport">
+                    <div class="flight__airport"><%=flight.departure_airport.code%></div>
+                    <div class="flight__time"><%=flight.start_datetime.strftime("%H:%M")%></div>
+                  </div>
+                  <div class="arrow-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 8L22 12L18 16" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12H22" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="flight__airport-and-time arrival-airport">
+                    <div class="flight__airport"><%=flight.arrival_airport.code%></div>
+                    <div class="flight__time"><%=flight.arrival_datetime.strftime("%H:%M")%></div>
+                  </div>
+                  <div class="flight__duration">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 2H14" stroke="#0A1020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 14L15 11" stroke="#0A1020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 22C16.4183 22 20 18.4183 20 14C20 9.58172 16.4183 6 12 6C7.58172 6 4 9.58172 4 14C4 18.4183 7.58172 22 12 22Z" stroke="#0A1020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <%=flight.duration_in_words%>
+                  </div>
+                </div>
+                <div class="flight__price">
+                
+                  <div class="price-tag">
+                    <div class="price-tag__price"><%=flight.price_in_euro((flight.price * params[:passenger_count].to_i))%></div>
+                  </div>
+                </div>
+              </label>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+    <div class="wizzard">
+      <div class="wizzard__flight-information">
+        <h2 class="wizzard__cta">Book this flight</h2>
+        <div>
+          <%= Airport.find(id = params[:from_airport]).code%> 
+          to 
+          <%= Airport.find(id = params[:to_airport]).code%> 
+          on 
+
+          <%="#{params[:date].to_date.strftime('%a')}, #{params[:date].to_date.strftime('%d').to_i.ordinalize} of #{params[:date].to_date.strftime('%B %Y')}"%>
+        </div>
+        <div>
+          <%= pluralize(params[:passenger_count], 'passenger')%>
+        </div>
+      </div>
+      <%= form.button "To passenger information", type: "submit", name: nil, class: "button button--wizzard-next"  %>
+    </div>
+      
+
+  <% end%>
+<%end%>

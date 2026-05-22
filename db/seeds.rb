@@ -7,3 +7,27 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Airport.destroy_all
+Flight.destroy_all
+
+muc = Airport.create!(code: "MUC")
+ber = Airport.create!(code: "BER")
+ham = Airport.create!(code: "HAM")
+
+airports = [ muc, ber, ham ]
+
+30.times do |day_offset|
+  date = Date.today + day_offset
+
+  airports.permutation(2).each do |from, to|
+    3.times do
+      Flight.create!(
+        departure_airport: from,
+        arrival_airport: to,
+        start_datetime: Time.zone.parse("#{date} #{rand(6..20)}:#{rand(0..59)}"),
+        duration: rand(45..90),
+        price: rand(90..280)*100
+      )
+    end
+  end
+end

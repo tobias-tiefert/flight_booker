@@ -1,0 +1,39 @@
+@layer components{
+  .navigation{
+    background-color: var(--blue-900);
+    color: var(--white);
+    display: flex;
+    padding: 1rem var(--p-left-right);
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem
+  }
+  .logo, .logo a, .logo a:visited{
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--white);
+  }
+  @media screen and (max-width: 500px) {
+    .logo, .logo a, .logo a:visited{
+    font-size: 1.5rem;
+  }
+  }
+  @media screen and (max-width: 350px) {
+    .logo, .logo a, .logo a:visited {
+    font-size: 1.3rem;
+  }
+  }
+  .navigation--icons{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
+  .navigation--icon{
+    list-style: none;
+  }
+}

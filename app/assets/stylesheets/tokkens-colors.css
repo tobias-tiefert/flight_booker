@@ -1,0 +1,25 @@
+@layer tokkens{
+  :root {
+    --blue-400: #7EA8B5;
+    --blue-900: #0A1020;
+
+    --gold-500: #BAAA64;
+    --gold-700: #A29149;
+    --yellow-500: #D5B836;
+
+    --white: #fff;
+
+    --gray-100: #F0F0F0;
+    --gray-300: #CCCCCC;
+
+    --red-500: #DB5959;
+
+
+
+    --alert: var(--red-500);
+
+    --background: var(--white);
+
+    --text: var(--blue-900);
+   }
+}

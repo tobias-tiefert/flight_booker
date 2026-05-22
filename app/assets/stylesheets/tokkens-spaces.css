@@ -1,0 +1,10 @@
+@layer tokkens{
+  :root {
+    --p-left-right: 2rem;
+   }
+   @media screen and (max-width: 400px) {
+    :root {
+    --p-left-right: 1rem;
+   }
+   }
+  }
